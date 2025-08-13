@@ -41,6 +41,7 @@ out/
 front-service/src/main/resources/static/firebase-config.js
 front-service/src/main/resources/static/firebase-messaging-sw.js
 member-service/src/main/resources/firebase-service-account.json
+notify-service/src/main/resources/firebase-service-account.json
 
 kafka-data/
 notify-app/
