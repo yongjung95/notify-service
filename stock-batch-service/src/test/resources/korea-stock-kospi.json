@@ -1,0 +1,32 @@
+{
+  "OutBlock_1": [
+    {
+      "ISU_CD": "KR7095570008",
+      "ISU_SRT_CD": "095570",
+      "ISU_NM": "AJ네트웍스보통주",
+      "ISU_ABBRV": "AJ네트웍스",
+      "ISU_ENG_NM": "AJ Networks Co.,Ltd.",
+      "LIST_DD": "20150821",
+      "MKT_TP_NM": "KOSPI",
+      "SECUGRP_NM": "주권",
+      "SECT_TP_NM": "-",
+      "KIND_STKCERT_TP_NM": "보통주",
+      "PARVAL": "1000",
+      "LIST_SHRS": "45252759"
+    },
+    {
+      "ISU_CD": "KR7006840003",
+      "ISU_SRT_CD": "006840",
+      "ISU_NM": "AK홀딩스보통주",
+      "ISU_ABBRV": "AK홀딩스",
+      "ISU_ENG_NM": "AK Holdings, Inc.",
+      "LIST_DD": "19990811",
+      "MKT_TP_NM": "KOSPI",
+      "SECUGRP_NM": "주권",
+      "SECT_TP_NM": "-",
+      "KIND_STKCERT_TP_NM": "보통주",
+      "PARVAL": "5000",
+      "LIST_SHRS": "13247561"
+    }
+  ]
+}

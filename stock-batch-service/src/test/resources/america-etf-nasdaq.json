@@ -1,0 +1,20 @@
+[
+  {
+    "Code": "QQQ",
+    "Name": "Invesco QQQ Trust",
+    "Country": "USA",
+    "Exchange": "NASDAQ",
+    "Currency": "USD",
+    "Type": "ETF",
+    "Isin": "US46090E1038"
+  },
+  {
+    "Code": "AAPD",
+    "Name": "Direxion Shares ETF Trust - Direxion Daily AAPL Bear 1X Shares",
+    "Country": "USA",
+    "Exchange": "NASDAQ",
+    "Currency": "USD",
+    "Type": "ETF",
+    "Isin": "US25461A3041"
+  }
+]

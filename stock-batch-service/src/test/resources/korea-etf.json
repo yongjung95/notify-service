@@ -1,0 +1,46 @@
+{
+  "OutBlock_1": [
+    {
+      "BAS_DD": "20250729",
+      "ISU_CD": "466400",
+      "ISU_NM": "1Q 25-08 회사채(A+이상)액티브",
+      "TDD_CLSPRC": "109135",
+      "CMPPREVDD_PRC": "10",
+      "FLUC_RT": "0.01",
+      "NAV": "109126.98",
+      "TDD_OPNPRC": "109150",
+      "TDD_HGPRC": "109150",
+      "TDD_LWPRC": "109125",
+      "ACC_TRDVOL": "696",
+      "ACC_TRDVAL": "75957565",
+      "MKTCAP": "101713820000",
+      "INVSTASST_NETASST_TOTAMT": "101706342649",
+      "LIST_SHRS": "932000",
+      "IDX_IND_NM": "KIS 2025-08만기형 크레딧 A+이상 지수(총수익)",
+      "OBJ_STKPRC_IDX": "123.39",
+      "CMPPREVDD_IDX": "0.01",
+      "FLUC_RT_IDX": "0.01"
+    },
+    {
+      "BAS_DD": "20250729",
+      "ISU_CD": "491610",
+      "ISU_NM": "1Q CD금리액티브(합성)",
+      "TDD_CLSPRC": "102570",
+      "CMPPREVDD_PRC": "5",
+      "FLUC_RT": "0.00",
+      "NAV": "102566.04",
+      "TDD_OPNPRC": "102570",
+      "TDD_HGPRC": "102575",
+      "TDD_LWPRC": "102570",
+      "ACC_TRDVOL": "6532",
+      "ACC_TRDVAL": "670002965",
+      "MKTCAP": "260938080000",
+      "INVSTASST_NETASST_TOTAMT": "260928009121",
+      "LIST_SHRS": "2544000",
+      "IDX_IND_NM": "KIS 하나 CD금리 총수익지수",
+      "OBJ_STKPRC_IDX": "11520.96",
+      "CMPPREVDD_IDX": "0.79",
+      "FLUC_RT_IDX": "0.01"
+    }
+  ]
+}

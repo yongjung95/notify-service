@@ -1,0 +1,49 @@
+{
+  "data": {
+    "asOf": null,
+    "headers": {
+      "symbol": "Symbol",
+      "name": "Name",
+      "lastsale": "Last Sale",
+      "netchange": "Net Change",
+      "pctchange": "% Change",
+      "marketCap": "Market Cap",
+      "country": "Country",
+      "ipoyear": "IPO Year",
+      "volume": "Volume",
+      "sector": "Sector",
+      "industry": "Industry",
+      "url": "Url"
+    },
+    "rows": [
+      {
+        "symbol": "AAPL",
+        "name": "Apple Inc. Common Stock",
+        "lastsale": "$214.05",
+        "netchange": "0.17",
+        "pctchange": "0.079%",
+        "volume": "37795387",
+        "marketCap": "3197013555300.00",
+        "country": "United States",
+        "ipoyear": "1980",
+        "industry": "Computer Manufacturing",
+        "sector": "Technology",
+        "url": "/market-activity/stocks/aapl"
+      },
+      {
+        "symbol": "AACB",
+        "name": "Artius II Acquisition Inc. Class A Ordinary Shares",
+        "lastsale": "$10.14",
+        "netchange": "0.00",
+        "pctchange": "0.00%",
+        "volume": "23",
+        "marketCap": "0.00",
+        "country": "United States",
+        "ipoyear": "2025",
+        "industry": "",
+        "sector": "",
+        "url": "/market-activity/stocks/aacb"
+      }
+    ]
+  }
+  }
