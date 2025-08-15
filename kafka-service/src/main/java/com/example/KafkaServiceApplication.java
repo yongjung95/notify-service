@@ -8,10 +8,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableJpaAuditing
 @EnableScheduling
-public class StockDataServiceApplication {
+public class KafkaServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StockDataServiceApplication.class, args);
+		SpringApplication.run(KafkaServiceApplication.class, args);
 	}
 
 }

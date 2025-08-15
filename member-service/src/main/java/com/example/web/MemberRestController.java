@@ -72,4 +72,30 @@ public class MemberRestController {
             return ResponseEntity.status(500).body("일반 에러: " + e.getMessage());
         }
     }
+
+    @PostMapping("/members/news-send-push")
+    public ResponseEntity<String> newsSendPush(@RequestParam String token) {
+        try {
+            Message message = Message.builder()
+                    .setToken(token)
+                    .putData("title", "뉴스 발행 테스트")
+                    .putData("body", "뉴스 확인하러 가기!")
+                    .putData("newsDataId", String.valueOf(45))
+                    .putData("type", "news")
+                    .build();
+
+            // 메시지 전송
+            String response = FirebaseMessaging.getInstance().send(message);
+
+            return ResponseEntity.ok("알림 전송 성공: " + response);
+        } catch (FirebaseMessagingException e) {
+            System.out.println("Firebase 에러 코드: " + e.getErrorCode());
+            System.out.println("Firebase 에러 메시지: " + e.getMessage());
+            return ResponseEntity.status(500).body("Firebase 에러: " + e.getErrorCode() + " - " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("일반 에러: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("일반 에러: " + e.getMessage());
+        }
+    }
 }

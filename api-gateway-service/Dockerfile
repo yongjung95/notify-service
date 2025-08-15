@@ -26,7 +26,7 @@ WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar /app/api-gateway-service.jar
 
 # 컨테이너가 시작될 때 실행될 명령어 (경로 수정)
-ENTRYPOINT ["java", "-jar", "/app/api-gateway-service.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=real", "/app/api-gateway-service.jar"]
 
 # 애플리케이션 포트
 EXPOSE 8088

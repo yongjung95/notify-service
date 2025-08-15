@@ -14,7 +14,7 @@ public class NewsSchedule {
 
     private final NewsManagementService newsManagementService;
 
-    @Scheduled(cron = "0 0 8 1/1 * MON-FRI", zone = "GMT+9:00")
+    @Scheduled(cron = "0 0 8 1/1 * *", zone = "GMT+9:00")
 //    @PostConstruct
     public void newsSchedule() {
         newsManagementService.sendNewsManagement()
