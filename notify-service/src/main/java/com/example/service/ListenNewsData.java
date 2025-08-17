@@ -3,7 +3,6 @@ package com.example.service;
 import com.example.dto.SendNotifyNewsTopic;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.Message;
-import com.google.firebase.messaging.Notification;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -21,10 +20,8 @@ public class ListenNewsData {
 
         Message message = Message.builder()
                 .setToken(sendNotifyNewsTopic.fcmToken())
-                .setNotification(Notification.builder()
-                        .setTitle(title)
-                        .setBody("뉴스 확인하러 가기!")
-                        .build())
+                .putData("title", title)
+                .putData("body", "뉴스 확인하러 가기!")
                 .putData("newsDataId", String.valueOf(sendNotifyNewsTopic.newsDataId()))
                 .putData("type", "news")
                 .build();

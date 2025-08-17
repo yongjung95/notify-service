@@ -10,8 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Ownglyph_corncorn-Rg', 'Inter', sans-serif;
             background-color: #f8f9fa; /* 연한 회색 배경 */
+        }
+        @font-face {
+            font-family: 'Ownglyph_corncorn-Rg';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2412-1@1.0/Ownglyph_corncorn-Rg.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
         }
         .navbar {
             background-color: #ffffff;
@@ -273,6 +279,20 @@
                 예시 키워드
                 <button type="button" class="btn-close btn-close-white ms-2" aria-label="Remove"></button>
             </span>
+            </div>
+        </div>
+
+        <div class="card p-4 mb-4">
+            <h4 class="card-title fw-bold mb-3">뉴스 검색</h4>
+            <form id="newsSearchForm">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="newsSearchInput" placeholder="검색할 키워드를 입력하세요" aria-label="Search news keyword">
+                    <button class="btn btn-primary" type="submit">검색</button>
+                </div>
+            </form>
+            <div id="newsSearchMessage" class="message-box" style="display: none;"></div>
+
+            <div id="newsSearchResultsContainer" class="row row-cols-1 g-4 mt-3">
             </div>
         </div>
     </div>
@@ -615,7 +635,7 @@
 
         try {
             // 실제 백엔드 API 엔드포인트로 변경해야 함
-            const response = await fetch(`${backendApiUrl}/api/news`, {
+            const response = await fetch(`${backendApiUrl}/api/news/management`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -726,6 +746,97 @@
             console.error('키워드 제거 중 오류 발생:', error);
             displayMessage(messageBoxId, '네트워크 오류가 발생했습니다. 다시 시도해주세요.', 'error');
         }
+    }
+
+    async function handleNewsSearch(event) {
+        event.preventDefault();
+
+        const searchInput = document.getElementById('newsSearchInput');
+        const searchTerm = searchInput.value.trim();
+        const token = localStorage.getItem('jwtToken');
+        const messageBox = document.getElementById('newsSearchMessage'); // ✨ 메시지 박스 가져오기 ✨
+        const resultsContainer = document.getElementById('newsSearchResultsContainer');
+
+        if (!searchTerm) {
+            displayMessage('newsSearchMessage', '검색할 키워드를 입력해주세요.', 'error');
+            return;
+        }
+
+        if (!token) {
+            displayMessage('newsSearchMessage', '로그인이 필요합니다.', 'error');
+            showPage('loginPage');
+            return;
+        }
+
+        // ✨ 검색 시작 시 로딩 메시지 표시 ✨
+        messageBox.className = 'message-box success'; // 로딩 메시지라 success로 설정
+        messageBox.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>뉴스 데이터를 가져오는 중입니다...';
+        messageBox.style.display = 'block';
+        resultsContainer.innerHTML = ''; // 기존 결과는 지우기
+
+        await fetchNewsBySearchTerm(searchTerm, token);
+    }
+
+    // ✨ 키워드로 뉴스 데이터를 가져오는 함수 (새로 추가) ✨
+    async function fetchNewsBySearchTerm(searchTerm, token) {
+        const container = document.getElementById('newsSearchResultsContainer');
+        const messageBox = document.getElementById('newsSearchMessage'); // ✨ 메시지 박스 가져오기 ✨
+
+        container.innerHTML = '';
+
+        try {
+            const response = await fetch(`${backendApiUrl}/api/news?keyword=${encodeURIComponent(searchTerm)}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                messageBox.style.display = 'none';
+                renderNewsSearchResults(data.data, searchTerm || []);
+            } else {
+                const errorData = await response.json();
+                displayMessage('newsSearchMessage', `검색 실패: ${errorData.message || '알 수 없는 오류'}`, 'error');
+                renderNewsSearchResults([]);
+            }
+        } catch (error) {
+            console.error('뉴스 검색 중 오류 발생:', error);
+            displayMessage('newsSearchMessage', '네트워크 오류가 발생했습니다.', 'error');
+            renderNewsSearchResults([]);
+        }
+    }
+
+    // ✨ 검색 결과를 렌더링하는 함수 (새로 추가) ✨
+    function renderNewsSearchResults(news, searchTerm) {
+        const container = document.getElementById('newsSearchResultsContainer');
+        container.innerHTML = ''; // 기존 목록 초기화
+
+        if (news.length === 0) {
+            container.innerHTML = '<p class="text-muted text-center">검색 결과가 없습니다.</p>';
+            return;
+        }
+
+        const newsDetail = JSON.parse(news.data);
+
+        let contentHtml = '';
+        const today = new Date();
+        const month = today.getMonth() + 1; // getMonth()는 0부터 시작
+        const date = today.getDate();
+
+        contentHtml += '<h3>' + month + '월 ' + date + '일 ' + searchTerm + ' 요약 뉴스 </h3>';
+
+        if (newsDetail.topics && Array.isArray(newsDetail.topics)) {
+            newsDetail.topics.forEach(topic => {
+                contentHtml += `
+                    <h5>${topic.title}</h5>
+                    <p>${topic.summary}</p>
+                `;
+            });
+        }
+
+        container.innerHTML = contentHtml || '내용 없음';
     }
 
     async function openNewsDetailFromNotification(payload) {
@@ -1130,6 +1241,20 @@
     document.addEventListener('DOMContentLoaded', () => {
         requestNotificationPermission();
 
+        const navLinks = document.querySelectorAll('#navbarNav .nav-link');
+        const navbarToggler = document.querySelector('.navbar-toggler');
+
+        if (navLinks && navbarToggler) {
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // 네비게이션 바가 열려 있을 때만 닫기
+                    if (navbarToggler.getAttribute('aria-expanded') === 'true') {
+                        navbarToggler.click();
+                    }
+                });
+            });
+        }
+
         // 로컬 스토리지에 토큰이 있는지 확인하여 로그인 상태 초기화
         const token = localStorage.getItem('jwtToken');
         if (token) {
@@ -1160,6 +1285,11 @@
         const keywordForm = document.getElementById('keywordForm');
         if (keywordForm) {
             keywordForm.addEventListener('submit', addKeyword);
+        }
+
+        const newsSearchForm = document.getElementById('newsSearchForm');
+        if (newsSearchForm) {
+            newsSearchForm.addEventListener('submit', handleNewsSearch);
         }
 
         handleUrlHash();

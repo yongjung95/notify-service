@@ -42,9 +42,9 @@ public class GlobalExceptionHandler {
     }
 
     // 선언되지 않은 모든 예외 처리
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<?> handleException(Exception e) {
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-//                .body(CommonResultRecord.failResult(HttpStatus.INTERNAL_SERVER_ERROR.value(), "서버 내부 오류가 발생했습니다."));
-//    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleException(Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(CommonResultRecord.failResult(HttpStatus.INTERNAL_SERVER_ERROR.value(), "서버 내부 오류가 발생했습니다."));
+    }
 }
