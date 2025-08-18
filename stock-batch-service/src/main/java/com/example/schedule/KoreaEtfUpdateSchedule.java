@@ -29,7 +29,7 @@ public class KoreaEtfUpdateSchedule {
         this.koreaEtfUpdateJob = koreaEtfUpdateJob;
     }
 
-    @Scheduled(cron = "0 10 0 * * ?")
+    @Scheduled(cron = "0 10 0 * * ?", zone = "GMT+9:00")
 //    @PostConstruct
     public void reportCurrentTime() throws Exception {
         String yesterday = LocalDate.now().minusDays(1).format(DateTimeFormatter.ofPattern("yyyyMMdd"));

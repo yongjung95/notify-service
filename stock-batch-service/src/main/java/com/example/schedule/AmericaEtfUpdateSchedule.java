@@ -29,7 +29,7 @@ public class AmericaEtfUpdateSchedule {
         this.americaEtfUpdateJob = americaEtfUpdateJob;
     }
 
-    @Scheduled(cron = "0 30 0 * * ?")
+    @Scheduled(cron = "0 30 0 * * ?", zone = "GMT+9:00")
     public void reportCurrentTime() throws Exception {
         String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 

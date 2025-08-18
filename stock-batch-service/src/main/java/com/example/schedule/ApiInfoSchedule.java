@@ -15,7 +15,7 @@ public class ApiInfoSchedule {
 
     private final ApiInfoService apiInfoService;
 
-    @Scheduled(cron = "0 0 0 * * ?")
+    @Scheduled(cron = "0 0 0 * * ?", zone = "GMT+9:00")
     public void scheduleStockApiInfo() throws Exception {
         apiInfoService.getApiInfo();
     }

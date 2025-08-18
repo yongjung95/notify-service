@@ -30,7 +30,7 @@ public class KoreaStockUpdateSchedule {
         this.koreaStockUpdateJob = koreaStockUpdateJob;
     }
 
-    @Scheduled(cron = "0 5 0 * * ?")
+    @Scheduled(cron = "0 5 0 * * ?", zone = "GMT+9:00")
     public void reportCurrentTime() throws Exception {
         String yesterday = LocalDate.now().minusDays(1).format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
