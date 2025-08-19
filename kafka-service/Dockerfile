@@ -2,8 +2,6 @@
 FROM eclipse-temurin:17-jdk AS builder
 WORKDIR /app
 
-ENV TZ=Asia/Seoul
-
 # gradlew, build.gradle 등 빌드에 필요한 파일 복사
 COPY gradlew .
 COPY gradle gradle
